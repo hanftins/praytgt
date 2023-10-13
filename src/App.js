@@ -60,7 +60,7 @@ function ChatRoom() {
   const messageContainerRef = useRef(); // Reference for the message container
 
   const messagesRef = firestore.collection('messages');
-  const [initialLoadCount, setInitialLoadCount] = useState(10);
+  const [initialLoadCount, setInitialLoadCount] = useState(25);
   const [messages, setMessages] = useState([]);
 
   const [formValue, setFormValue] = useState('');
