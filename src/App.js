@@ -60,11 +60,8 @@ function ChatRoom() {
   const messageContainerRef = useRef(); // Reference for the message container
 
   const messagesRef = firestore.collection('messages');
-  const [initialLoadCount, setInitialLoadCount] = useState(25);
-
-  const query = messagesRef.orderBy('createdAt', 'desc').limit(initialLoadCount);
-
-  const [messages] = useCollectionData(query, { idField: 'id' });
+  const [initialLoadCount, setInitialLoadCount] = useState(10);
+  const [messages, setMessages] = useState([]);
 
   const [formValue, setFormValue] = useState('');
   const [userName, setUserName] = useState('');
@@ -82,16 +79,32 @@ function ChatRoom() {
   const loadMoreMessages = () => {
     setScrollPosition(
       messageContainerRef.current.scrollHeight -
-        messageContainerRef.current.scrollTop
+      messageContainerRef.current.scrollTop
     );
-    setInitialLoadCount(initialLoadCount + 10);
+    setInitialLoadCount(initialLoadCount + 10); // Increase the limit
   };
+
 
   useEffect(() => {
     // Scroll to the preserved position after loading more messages
     messageContainerRef.current.scrollTop = scrollPosition;
   }, [scrollPosition]);
   
+  useEffect(() => {
+    // Fetch the new messages based on the updated limit
+    const query = messagesRef
+      .orderBy('createdAt', 'desc')
+      .limit(initialLoadCount);
+
+    // Use setMessages to update the messages with the new query result
+    query.onSnapshot((snapshot) => {
+      const newMessages = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setMessages(newMessages);
+    });
+  }, [initialLoadCount]);
 
   useEffect(() => {
     // Calculate the total number of messages in Firestore
@@ -116,16 +129,31 @@ function ChatRoom() {
   return (<>
 
     <main ref={messageContainerRef}>
-    {initialLoadCount < totalMessageCount && (
-        <button onClick={loadMoreMessages}>Tải thêm</button>
-      )}      {messages && messages.slice(-initialLoadCount).reverse().map(msg => <ChatMessage key={msg.id} message={msg} />)}
+      {initialLoadCount < totalMessageCount && (
+        <button className="load-more" onClick={loadMoreMessages}>
+          Tải thêm
+        </button>
+      )}
+        {messages && messages.slice(-initialLoadCount).reverse().map(msg => <ChatMessage key={msg.id} message={msg} />)}
 
       <span ref={dummy}></span>
 
     </main>
-    <form onSubmit={sendMessage}>
-    <input className="username-input" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Tên của bạn" /> {/* Input field for the user's name */}
-    <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Lời cầu nguyện" />
+    <form onSubmit={sendMessage} className="form-container">
+    <div className="input-container">
+
+    <input className="username-input" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Điền tên người cầu nguyện" /> {/* Input field for the user's name */}
+    <textarea
+    className="message-input"
+  value={formValue}
+  onChange={(e) => {
+    setFormValue(e.target.value);
+  }}
+  placeholder="Điền nội dung lời cầu nguyện"
+  rows={1}
+/>
+</div>
+
         <button type="submit" disabled={!formValue || !userName}>🙏</button> {/* Ensure both message and name are provided */}
     </form>
   </>)
@@ -133,12 +161,22 @@ function ChatRoom() {
 
 
 function ChatMessage(props) {
-  const { text, userName } = props.message;
-
+  const { text, userName, createdAt  } = props.message;
+  const formattedText = text.split('\n').map((line, index) => (
+    <React.Fragment key={index}>
+      {index > 0 && <br />}
+      {line}
+    </React.Fragment>
+  ));
+  const messageDate = createdAt ? createdAt.toDate() : null;
+  const formattedMessageDate = messageDate
+  ? messageDate.toLocaleDateString('vi-VN')
+  : null;
   return (<>
-    <div className="message">
-    <p className="username">{userName}</p> {/* Display the username here */}
-      <p>{text}</p>
+   <div className="message">
+      <p className="username">{userName}</p>
+      <p>{formattedText}</p>
+      <p className="message-date">{formattedMessageDate}</p> {/* Display the message date */}
     </div>
   </>)
 }

@@ -36,7 +36,7 @@ body {
 
 main {
   padding: 10px;
-  height: 80vh;
+  height: 69vh;
   margin: 10vh 0 0vh;
   overflow-y: scroll;
   display: flex;
@@ -57,6 +57,7 @@ main::-webkit-scrollbar-thumb {
 }
 
 form {
+  height: auto; /* Adjust the height to fit the content */
   background-color: #e6e6e6;
   padding: 10px 20px;
   display: flex;
@@ -89,7 +90,8 @@ input {
 }
 
 button {
-  background-color: #282c34; /* Green */
+  flex: none;
+  background-color: #282c34;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -112,7 +114,6 @@ ul, li {
 }
 
 p {
-  max-width: 500px;
   margin-bottom: 12px;
   line-height: 24px;
   padding: 10px 20px;
@@ -124,7 +125,8 @@ p {
 
 .message {
   display: flex;
-  align-items: center;
+  flex-direction: column; /* Display username and text in a column */
+  align-items: flex-start; /* Align items to the top */
   margin: 10px 0;
   padding: 10px;
   border-radius: 10px;
@@ -137,8 +139,85 @@ p {
   margin-right: 5px;
 }
 
+.message-date {
+  color: #888; /* Adjust the color as needed */
+  font-size: 0.8rem; /* Adjust the font size as needed */
+}
+
 .message p {
   margin: 0;
   padding: 5px;
   word-wrap: break-word;
+  text-align: justify; /* Align text to the left */
+}
+
+/* Textarea styles */
+.message-input {
+  flex: 2;
+  min-height: 100px;
+  width: 95%;
+  font-size: 16px;
+  background: #f9f9f9;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  outline: none;
+  resize: vertical;
+  transition: height 0.2s;
+  overflow-y: auto;
+}
+
+
+.username-input {
+  flex: 1;
+  height: 45px;
+  width: 95%;
+  font-size: 16px;
+  background: #f9f9f9;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  outline: none;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+
+button.load-more {
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+button:hover {
+  background-color: #0057a3; /* Change color on hover */
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  background-color: #e6e6e6;
+  padding: 10px 20px;
+  position: sticky;
+  bottom: 0;
+  border-top: 1px solid #ccc;
+}
+
+.input-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.message-input::placeholder {
+  font-size: 16px; /* Font size */
+  font-family: 'Arial', sans-serif; /* Use Arial as the font family */
 }
