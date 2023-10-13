@@ -1,15 +1,16 @@
 body {
-  background-color: #282c34;
+  background-color: #f3f3f3; /* Light gray background */
 }
 
 .App {
   text-align: center;
   max-width: 728px;
   margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .App header {
-  background-color: #181717;
+  background-color: #1a1a1a; /* Dark header background */
   height: 10vh;
   min-height: 50px;
   color: white;
@@ -30,56 +31,61 @@ body {
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  background-color: rgb(40, 37, 53);
+  background-color: #e6e6e6; /* Light gray background */
 }
 
 main {
   padding: 10px;
   height: 80vh;
-  margin: 10vh 0 10vh;
+  margin: 10vh 0 0vh;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  background-color: #f3f3f3; /* Light gray content background */
 }
 
 main::-webkit-scrollbar {
-  width: 0.25rem;
+  width: 5px; /* Wider scrollbar */
 }
 
 main::-webkit-scrollbar-track {
-  background: #1e1e24;
+  background: #ddd; /* Light gray track */
 }
 
 main::-webkit-scrollbar-thumb {
-  background: #6649b8;
+  background: #666; /* Dark gray thumb */
 }
 
 form {
-  height: 10vh;
-  position: fixed;
-  bottom: 0;
-  background-color: rgb(24, 23, 23);
-  width: 100%;
-  max-width: 728px;
+  background-color: #e6e6e6;
+  padding: 10px 20px;
   display: flex;
-  font-size: 1.5rem;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+  border-top: 1px solid #ccc; /* Divider between form and chat */
 }
 
 form button {
-  width: 20%;
-  background-color: rgb(56, 56, 143);
+  background-color: #0078d4; /* Blue send button */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  margin-left: 10px; /* Space between input and button */
 }
 
-
 input {
-  line-height: 1.5;
-  width: 100%;
-  font-size: 1.5rem;
-  background: rgb(58, 58, 58);
-  color: white;
-  outline: none;
+  flex: 2; /* Fill available space */
+  height: 40px; /* Adjust the input height */
+  font-size: 16px; /* Slightly smaller font size */
+  background: #f9f9f9; /* Light gray input background */
+  color: #333; /* Darker text color */
   border: none;
-  padding: 0 10px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  outline: none;
+  margin-right: 10px
 }
 
 button {
@@ -100,16 +106,6 @@ button:disabled {
 }
 
 
-.sign-in {
-  color: #282c34;
-  background: white;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-
-
-
 ul, li {
   text-align: left;
   list-style: none;
@@ -122,34 +118,27 @@ p {
   padding: 10px 20px;
   border-radius: 25px;
   position: relative;
-  color: white;
+  color: #333;
   text-align: center;
 }
 
 .message {
   display: flex;
   align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #fff; /* White received message bubble */
+  color: #333;
 }
 
-
-.sent {
-  flex-direction: row-reverse;
+.username {
+  font-weight: bold;
+  margin-right: 5px;
 }
 
-.sent p {
-  color: white;
-  background: #0b93f6;
-  align-self: flex-end;
+.message p {
+  margin: 0;
+  padding: 5px;
+  word-wrap: break-word;
 }
-.received p {
-  background: #e5e5ea;
-  color: black;
-}
-
-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin: 2px 5px;
-}
-
