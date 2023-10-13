@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>P</h1>
+        <h1>Cầu nguyện</h1>
       </header>
 
       <section>
@@ -117,15 +117,15 @@ function ChatRoom() {
 
     <main ref={messageContainerRef}>
     {initialLoadCount < totalMessageCount && (
-        <button onClick={loadMoreMessages}>Load More Messages</button>
+        <button onClick={loadMoreMessages}>Tải thêm</button>
       )}      {messages && messages.slice(-initialLoadCount).reverse().map(msg => <ChatMessage key={msg.id} message={msg} />)}
 
       <span ref={dummy}></span>
 
     </main>
     <form onSubmit={sendMessage}>
-    <input className="username-input" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="n" /> {/* Input field for the user's name */}
-    <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="p" />
+    <input className="username-input" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Tên của bạn" /> {/* Input field for the user's name */}
+    <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Lời cầu nguyện" />
         <button type="submit" disabled={!formValue || !userName}>🙏</button> {/* Ensure both message and name are provided */}
     </form>
   </>)
