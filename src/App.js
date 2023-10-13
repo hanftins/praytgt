@@ -1,10 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './App.css';
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
-import 'firebase/analytics';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -21,8 +20,6 @@ firebase.initializeApp({
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
-const analytics = firebase.analytics();
-
 
 function App() {
 
@@ -46,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Cầu nguyện</h1>
+        <h1>P</h1>
       </header>
 
       <section>
@@ -106,12 +103,9 @@ function ChatRoom() {
   const sendMessage = async (e) => {
     e.preventDefault();
 
-    const { uid } = auth.currentUser;
-
     await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid,
       userName
     })
 
@@ -130,8 +124,8 @@ function ChatRoom() {
 
     </main>
     <form onSubmit={sendMessage}>
-    <input className="username-input" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Tên của bạn" /> {/* Input field for the user's name */}
-    <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Lời cầu nguyện" />
+    <input className="username-input" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="n" /> {/* Input field for the user's name */}
+    <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="p" />
         <button type="submit" disabled={!formValue || !userName}>🙏</button> {/* Ensure both message and name are provided */}
     </form>
   </>)
@@ -139,7 +133,7 @@ function ChatRoom() {
 
 
 function ChatMessage(props) {
-  const { text, uid, userName } = props.message;
+  const { text, userName } = props.message;
 
   return (<>
     <div className="message">
