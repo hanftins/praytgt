@@ -11,8 +11,6 @@ body {
 
 .App header {
   background-color: #235aa1; /* Dark header background */
-  height: 15vh;
-  min-height: 60px;
   color: white;
   position: fixed;
   width: 100%;
@@ -30,14 +28,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 100vh;
   background-color: #e6e6e6; /* Light gray background */
 }
 
 main {
   padding: 10px;
-  height: 64vh;
-  margin: 15vh 0 0vh;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;

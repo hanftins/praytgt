@@ -24,6 +24,44 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
+function adjustHeaderHeight() {
+  const header = document.querySelector('.App header');
+  const headerText = document.querySelector('.HeaderText');
+  if (header && headerText) {
+    header.style.height = headerText.clientHeight + 'px';
+  }
+}
+
+// Call the adjustHeaderHeight function when the window is resized
+window.addEventListener('resize', adjustHeaderHeight);
+
+function adjustMainHeight() {
+  const main = document.querySelector('main');
+  const header = document.querySelector('.App header');
+  const formContainer = document.querySelector('.form-container');
+
+  if (main && header && formContainer) {
+    const windowHeight = window.innerHeight;
+    const headerHeight = header.clientHeight;
+    const formContainerHeight = formContainer.clientHeight;
+    main.style.height = `${windowHeight - headerHeight - formContainerHeight - 21}px`;
+  }
+}
+
+// Call the adjustMainHeight function when the window is resized
+window.addEventListener('resize', adjustMainHeight);
+
+function setMainMargin() {
+  const main = document.querySelector('main');
+  const header = document.querySelector('.App header');
+
+  if (main && header) {
+    const headerHeight = header.clientHeight;
+
+    main.style.marginTop = `${headerHeight}px`;
+  }
+}
+
 function App() {
 
   const [user] = useAuthState(auth);
@@ -41,11 +79,15 @@ function App() {
     if (!user) {
       signInAnonymously();
     }
+
+    adjustHeaderHeight();
+    adjustMainHeight();
+    setMainMargin()
   }, [user]);
 
   return (
     <div className="App">
-      <header class="headerStyle">
+      <header>
       <img src={headerImage2} alt="Header Image 2" class="imageStyle"/>
       <div class="HeaderText">
         <p class="line1">"Ở đâu có hai ba người hợp nhau nhân danh Thầy, thì Thầy sẽ ở giữa họ" (Mt. 18-20)</p>
