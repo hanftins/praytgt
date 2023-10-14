@@ -11,7 +11,8 @@ body {
 
 .App header {
   background-color: #235aa1; /* Dark header background */
-  height: 160px;
+  height: 15vh;
+  min-height: 60px;
   color: white;
   position: fixed;
   width: 100%;
@@ -35,7 +36,7 @@ body {
 
 main {
   padding: 10px;
-  height: 61vh;
+  height: 64vh;
   margin: 15vh 0 0vh;
   overflow-y: scroll;
   display: flex;
