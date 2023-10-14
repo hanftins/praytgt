@@ -5,8 +5,6 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
 import headerImage from './THDCHN.jpg';
 import headerImage2 from './THDCHN2.jpg';
 
@@ -21,7 +19,6 @@ firebase.initializeApp({
   measurementId: "G-PSGR1KKEPR"
 })
 
-const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 function adjustHeaderHeight() {
@@ -63,41 +60,25 @@ function setMainMargin() {
 }
 
 function App() {
-
-  const [user] = useAuthState(auth);
-
   useEffect(() => {
-    const signInAnonymously = async () => {
-      try {
-        await auth.signInAnonymously();
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    // Check if there's no signed-in user (user is null)
-    if (!user) {
-      signInAnonymously();
-    }
-
     adjustHeaderHeight();
     adjustMainHeight();
     setMainMargin()
-  }, [user]);
+  });
 
   return (
     <div className="App">
       <header>
-      <img src={headerImage2} alt="Header Image 2" class="imageStyle"/>
+      <img src={headerImage2} alt="" class="imageStyle"/>
       <div class="HeaderText">
         <p class="line1">"Ở đâu có hai ba người hợp nhau nhân danh Thầy, thì Thầy sẽ ở giữa họ" (Mt. 18-20)</p>
         <p class="line2">THĐC CÙNG HỢP LỜI CẦU NGUYỆN CHO NHAU<br/>Xin Mẹ Đồng Công và Anh Quorum Primus chuyển cầu lên Thiên Chúa cho chúng con.</p>
       </div>
-        <img src={headerImage} alt="Header Image" class="imageStyle"/>
+        <img src={headerImage} alt="" class="imageStyle"/>
       </header>
 
       <section>
-        {user && <ChatRoom />}
+        {<ChatRoom />}
       </section>
 
     </div>
@@ -161,7 +142,7 @@ function ChatRoom() {
     messagesRef.get().then((querySnapshot) => {
       setTotalMessageCount(querySnapshot.size);
     });
-  }, []);
+  });
   
   const sendMessage = async (e) => {
     e.preventDefault();
