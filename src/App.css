@@ -10,9 +10,9 @@ body {
 }
 
 .App header {
-  background-color: #1a1a1a; /* Dark header background */
-  height: 10vh;
-  min-height: 50px;
+  background-color: #235aa1; /* Dark header background */
+  height: 15vh;
+  min-height: 60px;
   color: white;
   position: fixed;
   width: 100%;
@@ -36,8 +36,8 @@ body {
 
 main {
   padding: 10px;
-  height: 69vh;
-  margin: 10vh 0 0vh;
+  height: 64vh;
+  margin: 15vh 0 0vh;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
@@ -216,4 +216,12 @@ button:hover {
   align-items: flex-start;
   width: 100%;
   margin-bottom: 5px;
+}
+
+.imageStyle {
+  max-height: 100%;      
+}
+
+.HeaderText {
+  max-width: 430px;
 }

@@ -7,6 +7,9 @@ import 'firebase/compat/firestore';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import headerImage from './THDCHN.jpg';
+import headerImage2 from './THDCHN2.jpg';
+
 
 firebase.initializeApp({
   apiKey: "AIzaSyANi6jm1em0TW_3cIzaw8dStebKFi9Q5wc",
@@ -42,8 +45,13 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <h1>Cầu nguyện</h1>
+      <header class="headerStyle">
+      <img src={headerImage2} alt="Header Image 2" class="imageStyle"/>
+      <div class="HeaderText">
+        <h3>"Ở đâu có hai ba người hợp nhau nhân danh Thầy, thì Thầy sẽ ở giữa họ" (Mt. 18-20)</h3>
+        <h4>THĐC CÙNG HỢP LỜI CẦU NGUYỆN CHO NHAU<br/>Xin Mẹ Đồng Công và Anh Quorum Primus chuyển cầu lên Thiên Chúa cho chúng con.</h4>
+      </div>
+        <img src={headerImage} alt="Header Image" class="imageStyle"/>
       </header>
 
       <section>
