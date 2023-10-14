@@ -223,5 +223,48 @@ button:hover {
 }
 
 .HeaderText {
-  max-width: 430px;
+  max-width: 70%;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  /* CSS styles for screens with a maximum width of 768px (phones) */
+  .App header .imageStyle {
+    max-height: 70px; /* Adjust the desired height for the image */
+  }
+}
+
+@media (max-width: 768px) {
+  .HeaderText {
+    width: 100%; /* Adjust the width for smaller screens */
+  }
+}
+
+
+.line1 {
+  font-size: 20px; /* Adjust the font size for the first line */
+  margin: 0; /* Add spacing between the two lines */
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #fff;
+}
+
+.line2 {
+  font-size: 16px; /* Adjust the font size for the second line */
+  color: #fff;
+  margin: 0; /* Add spacing between the two lines */
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .line1 {
+    font-size: 16px; /* Smaller font size for phones */
+  }
+
+  .line2 {
+    font-size: 14px; /* Smaller font size for phones */
+  }
 }

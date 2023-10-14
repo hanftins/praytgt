@@ -48,8 +48,8 @@ function App() {
       <header class="headerStyle">
       <img src={headerImage2} alt="Header Image 2" class="imageStyle"/>
       <div class="HeaderText">
-        <h3>"Ở đâu có hai ba người hợp nhau nhân danh Thầy, thì Thầy sẽ ở giữa họ" (Mt. 18-20)</h3>
-        <h4>THĐC CÙNG HỢP LỜI CẦU NGUYỆN CHO NHAU<br/>Xin Mẹ Đồng Công và Anh Quorum Primus chuyển cầu lên Thiên Chúa cho chúng con.</h4>
+        <p class="line1">"Ở đâu có hai ba người hợp nhau nhân danh Thầy, thì Thầy sẽ ở giữa họ" (Mt. 18-20)</p>
+        <p class="line2">THĐC CÙNG HỢP LỜI CẦU NGUYỆN CHO NHAU<br/>Xin Mẹ Đồng Công và Anh Quorum Primus chuyển cầu lên Thiên Chúa cho chúng con.</p>
       </div>
         <img src={headerImage} alt="Header Image" class="imageStyle"/>
       </header>
