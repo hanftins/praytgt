@@ -192,7 +192,7 @@ function ChatRoom() {
 
 
 function ChatMessage(props) {
-  const { text, userName, createdAt  } = props.message;
+  const { text, userName, createdAt, id  } = props.message;
   const formattedText = text.split('\n').map((line, index) => (
     <React.Fragment key={index}>
       {index > 0 && <br />}
@@ -203,11 +203,24 @@ function ChatMessage(props) {
   const formattedMessageDate = messageDate
   ? messageDate.toLocaleDateString('vi-VN')
   : null;
+
+  const handleDelete = () => {
+    // Assuming 'id' is the unique messageId of the message
+    firestore.collection('messages').doc(id).delete()
+      .then(() => {
+        console.log('Message deleted successfully');
+      })
+      .catch((error) => {
+        console.error('Error deleting message: ', error);
+      });
+  };
+
   return (<>
    <div className="message">
       <p className="username">{userName}</p>
       <p>{formattedText}</p>
       <p className="message-date">{formattedMessageDate}</p> {/* Display the message date */}
+      <button onClick={handleDelete} className="delete-button">Delete</button>
     </div>
   </>)
 }

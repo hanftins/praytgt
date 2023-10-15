@@ -263,3 +263,14 @@ button:hover {
     font-size: 14px; /* Smaller font size for phones */
   }
 }
+
+.delete-button {
+  background-color: #be2a2a; /* Red background color for the delete button */
+  color: #fff; /* White text color */
+  border: none;
+  padding: 5px 10px; /* Adjust padding to make the button smaller */
+  border-radius: 5px;
+  margin: 0 auto; /* Center the button horizontally */
+  display: block; /* Ensure the button takes up the full width available */
+  cursor: pointer;
+}
