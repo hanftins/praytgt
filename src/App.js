@@ -10,7 +10,7 @@ import headerImage2 from './THDCHN2.jpg';
 
 
 firebase.initializeApp({
-  apiKey: "AIzaSyANi6jm1em0TW_3cIzaw8dStebKFi9Q5wc",
+  apiKey: process.env.REACT_APP_FIREBASE_API,
   authDomain: "praytgt.firebaseapp.com",
   projectId: "praytgt",
   storageBucket: "praytgt.appspot.com",
